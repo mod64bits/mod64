@@ -126,9 +126,9 @@ USE_L10N = True
 THOUSAND_SEPARATOR = '.',
 USE_THOUSAND_SEPARATOR = True
 
-STATIC_URL = '/static/'
+STATIC_URL = '/statics/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "statics"),
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
