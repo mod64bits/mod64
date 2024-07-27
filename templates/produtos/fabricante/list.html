@@ -1,0 +1,9 @@
+{% for fabricante in object_list %}
+<tr id="fabricante-{{ fabricante.pk }}" class="fabricante-row">
+  
+  <td>{{ fabricante.nome }}</td>
+  <td>
+    <button class="btn btn-primary btn-sm" hx-get="{% url 'produtos:fabricante_edit' pk=fabricante.pk %}" hx-target="#dialog">Editar</button>
+  </td>
+</tr>
+{% endfor %}
