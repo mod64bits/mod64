@@ -35,13 +35,13 @@
   </div>
   <div class="modal-footer bg-secondary rounded h-100 p-4">
     {% if fornecedor %}
-    <button type="button" class="btn btn-danger" hx-post="{% url 'produtos:remove_fornecedor' pk=fornecedor.pk %}">Excluir</button>
+    <button type="button" class="btn btn-danger" hx-post="{% url 'produtos:remove_fornecedor' pk=fornecedor.pk %}">Remove</button>
     <span class="flex-grow-1"></span>
     {% endif %}
     <button type="button" class="btn btn-info" data-bs-dismiss="modal">
-      Cancelar
+      Cancel
     </button>
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="submit" class="btn btn-primary">Save</button>
   </div>
 </form>
     </div>
