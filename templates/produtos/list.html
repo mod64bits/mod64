@@ -1,0 +1,14 @@
+{% for produto in object_list %}
+<tr id="produto-{{ produto.pk }}" class="produto-row">
+  <td>{{ produto.nome }}</td>
+  <td>{{ produto.fabricante }}</td>
+  <td>{{ produto.fornecedor }}</td>
+  <td>{{ produto.preco_compra }}</td>
+  <td>
+      <a href="{{ produto.link_produto }}"><i class="fa-solid fa-globe"></i></a>
+  </td>
+  <td>
+    <button class="btn btn-primary btn-sm" hx-get="{% url 'produtos:produto_edit' produto.pk %}" hx-target="#dialog">Editar</button>
+  </td>
+</tr>
+{% endfor %}

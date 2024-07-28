@@ -38,11 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # libs
+    'widget_tweaks',
 
     # apps
     'apps.users',
     'apps.base',
     'apps.core',
+    'apps.produtos',
 ]
 
 MIDDLEWARE = [
@@ -125,9 +128,9 @@ USE_L10N = True
 THOUSAND_SEPARATOR = '.',
 USE_THOUSAND_SEPARATOR = True
 
-STATIC_URL = '/static/'
+STATIC_URL = '/statics/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "statics"),
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -1,0 +1,12 @@
+{% for fornecedor in fornecedores %}
+<tr id="fornecedor-{{ fornecedor.pk }}" class="fornecedor-row">
+  <td>{{ fornecedor.tipo }}</td>
+  <td>{{ fornecedor.nome }}</td>
+  <td>{{ fornecedor.documento }}</td>
+  <td>{{ fornecedor.telefone }}</td>
+  <td>{{ fornecedor.email }}</td>
+  <td>
+    <button class="btn btn-primary btn-sm" hx-get="{% url 'produtos:edit_fornecedor' pk=fornecedor.pk %}" hx-target="#dialog">Editar</button>
+  </td>
+</tr>
+{% endfor %}
