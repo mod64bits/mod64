@@ -2,11 +2,11 @@
 {% with WIDGET_ERROR_CLASS='is-invalid' %}
     <div class="">
         <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content ">
-            <div class="modal-header bg-primary {% if fornecedor %} {% else %} bg-secondary{% endif %} bg-gradient">
+            <div class="modal-header   {% if obj_model %} bg-gradient-purple  {% else %} bg-gradient-purple {% endif %}">
                 <h5 class="modal-title">Produto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="fa fa-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body bg-secondary rounded h-100 p-4">
+            <div class="modal-body">
                 <div class="mb-3">
                     <label for="{{ form.nome.id_for_label }}" class="form-label">Nome</label>
                     {% render_field form.nome class="form-control" %}
@@ -19,7 +19,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="{{ form.fornecedor.id_for_label }}" class="form-label">Fornecedor</label >
-                    {% render_field form.fornecedor class="form-control" %}
+                    {% render_field form.fornecedor class="form-control select2bs4" %}
                     <div class="invalid-feedback">{{ form.fornecedor.errors|first }}</div>
                 </div>
                 <div class="mb-3">
@@ -33,12 +33,12 @@
                     <div class="invalid-feedback">{{ form.preco_compra.errors|first }}</div>
                 </div>
             </div>
-            <div class="modal-footer bg-secondary rounded h-100 p-4">
+            <div class="modal-footer  rounded  {% if obj_model %} bg-purple {% else %} bg-gradient-purple {% endif %}">
                 {% if obj_model %}
                     <button type="button" class="btn btn-danger" hx-post="{% url 'produtos:produto_remove' pk=obj_model.pk %}">Excluir</button>
                     <span class="flex-grow-1"></span>
                 {% endif %}
-                <button type="button" class="btn btn-info" data-bs-dismiss="modal">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">
                     Cancelar
                 </button>
                 <button type="submit" class="btn btn-primary">Salvar</button>
@@ -47,3 +47,15 @@
     </div>
 {% endwith %}
 
+<script>
+     $(function () {
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+    })
+
+    
+</script>
