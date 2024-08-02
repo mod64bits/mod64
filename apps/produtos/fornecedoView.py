@@ -1,39 +1,26 @@
-import json
-from django.shortcuts import render
-from django.http import HttpResponse
+from apps.base.views import BaseViews
+from .models import Fornecedor
+from .forms import FornecedorForm
 from django.views.decorators.http import require_POST
-from django.shortcuts import get_object_or_404
 
-from apps.produtos.forms import FornecedorForm
-from apps.produtos.models import Fornecedor
-from apps.base.views import addBaseView, editBaseView
+fornecedor_obj = BaseViews(
+    model=Fornecedor,
+    form_class=FornecedorForm,
+    listChanged='fornecedorListChanged'
+)
 
-def index_fornecedor(request):
-    return render(request, 'produtos/fornecedor/index.html')
+def index(request):
+    return fornecedor_obj.index_view(request, 'produtos/fornecedor/index.html')
 
-def list_fornecedor(request):
-    return render(request, 'produtos/fornecedor/fornecedor_list.html', {
-        'fornecedores': Fornecedor.objects.all()
-    })
+def list(request):
+    return fornecedor_obj.list_view(request, 'produtos/fornecedor/fornecedor_list.html')
 
+def to_add(request):
+    return fornecedor_obj.add_view(request,'produtos/fornecedor/fornecedor_form.html' )
 
-def add_fornecedor(request):
-    return addBaseView(request, FornecedorForm, 'produtos/fornecedor/fornecedor_form.html' )
-
-
-def edit_fornecedor(request, pk):
-    return editBaseView(request, pk, Fornecedor, FornecedorForm,'produtos/fornecedor/fornecedor_form.html')
-
+def edit(request, pk):
+    return fornecedor_obj.edit_view(request, pk,'produtos/fornecedor/fornecedor_form.html')
 
 @require_POST
-def remove_fornecedor(request, pk):
-    fornecedor = get_object_or_404(Fornecedor, pk=pk)
-    fornecedor.delete()
-    return HttpResponse(
-        status=204,
-        headers={
-            'HX-Trigger': json.dumps({
-                "fornecedorListChanged": None,
-                "showMessage": f"{fornecedor.nome} deletado."
-            })
-        })
+def delete(request, pk):
+    return fornecedor_obj.delete_view(request, pk)

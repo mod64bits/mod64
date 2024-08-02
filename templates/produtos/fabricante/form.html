@@ -4,7 +4,7 @@
         <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content ">
             <div class="modal-header bg-primary {% if fabricante %} {% else %} bg-secondary{% endif %} bg-gradient">
                 <h5 class="modal-title">Frabricante</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body bg-secondary rounded h-100 p-4">
 
@@ -19,7 +19,7 @@
                     <button type="button" class="btn btn-danger" hx-post="{% url 'produtos:fabricante_remove' pk=obj_model.pk %}">Excluir</button>
                     <span class="flex-grow-1"></span>
                 {% endif %}
-                <button type="button" class="btn btn-info" data-bs-dismiss="modal">
+                <button type="button" class="btn btn-info" data-dismiss="modal">
                     Cancelar
                 </button>
                 <button type="submit" class="btn btn-primary">Salvar</button>
