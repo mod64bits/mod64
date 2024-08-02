@@ -74,45 +74,4 @@ class BaseViews:
                 })
             })
 
-def addBaseView(request, form, template):
-
-    if request.method == "POST":
-        form = form(request.POST)
-        if form.is_valid():
-            form_obj = form.save()
-            return HttpResponse(
-                status=204,
-                headers={
-                    'HX-Trigger': json.dumps({
-                        "fornecedorListChanged": None,
-                        "showMessage": f"{form_obj.nome} Adcionado."
-                    })
-                })
-    else:
-        form = form()
-    return render(request, template, {
-        'form': form,
-    })
-
-def editBaseView(request, pk, model, form, template):
-    obj_model = get_object_or_404(model, pk=pk)
-    if request.method == "POST":
-        form = form(request.POST, instance=obj_model)
-        if form.is_valid():
-            form.save()
-            return HttpResponse(
-                status=204,
-                headers={
-                    'HX-Trigger': json.dumps({
-                        "fornecedorListChanged": None,
-                        "showMessage": f"{obj_model.nome} Atuializado."
-                    })
-                }
-            )
-    else:
-        form = form(instance=obj_model)
-    return render(request, template, {
-        'form': form,
-        'obj_model': obj_model,
-    })
 

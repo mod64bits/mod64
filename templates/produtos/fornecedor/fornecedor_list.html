@@ -1,4 +1,4 @@
-{% for fornecedor in fornecedores %}
+{% for fornecedor in object_list %}
 <tr id="fornecedor-{{ fornecedor.pk }}" class="fornecedor-row">
   <td>{{ fornecedor.tipo }}</td>
   <td>{{ fornecedor.nome }}</td>
