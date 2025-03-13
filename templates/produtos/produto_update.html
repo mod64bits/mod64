@@ -1,0 +1,74 @@
+{% load widget_tweaks %}
+
+<form method="post" action="">
+  {% csrf_token %}
+
+  <div class="modal-header">
+    <h3 class="modal-title">Atualizar Produto</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+          <div class="row">
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>{{ form.codigo.label }}</label>
+                    {% render_field form.codigo class="form-control" placeholder="Codigo"  %}
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>{{ form.nome.label }}</label>
+                    {% render_field form.nome class="form-control" placeholder="Nome"  %}
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>{{ form.categoria.label }}</label>
+                    {% render_field form.categoria class="form-control select2bs4" placeholder="Categoria"  %}
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>{{ form.fornecedor.label }}</label>
+                    {% render_field form.fornecedor class="form-control select2bs4" placeholder="Fornecedor"  %}
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>{{ form.fabricante.label }}</label>
+                    {% render_field form.fabricante class="form-control select2bs4" placeholder="Fornecedor"  %}
+                </div>
+            </div>
+
+             <div class="col-sm-4">
+                <div class="form-group">
+                    <label>{{ form.link_produto.label }}</label>
+                    {% render_field form.link_produto class="form-control" placeholder="Link"  %}
+                </div>
+            </div>
+             <div class="col-sm-4">
+                <div class="form-group">
+                    <label>{{ form.preco_compra.label }}</label>
+                    {% render_field form.preco_compra class="form-control" %}
+                </div>
+            </div>
+        </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </div>
+
+</form>
