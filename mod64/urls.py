@@ -26,6 +26,7 @@ urlpatterns = [
     path('clientes/', include('apps.clientes.urls')),
     path('fornecedores/', include('apps.fornecedores.urls')),
     path('produtos/', include('apps.produtos.urls')),
+    path('tickets/', include('apps.tickets.urls')),
 path(
         'jsi18n/',
         cache_page(3600)(JavaScriptCatalog.as_view(packages=['formset'])),

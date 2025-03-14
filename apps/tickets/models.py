@@ -36,7 +36,7 @@ class Ticket(BaseModel):
     finalizado_em = models.DateTimeField(null=True, blank=True, editable=False)
 
     def __str__(self):
-        return self.solicitante
+        return f"Cliente: {self.cliente} - {self.solicitante}"
 
 
 

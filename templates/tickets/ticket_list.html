@@ -1,0 +1,209 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
+
+{% endblock extra_css %}
+
+{% block content %}
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-default">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" role="dialog" id="modal-xl">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+
+
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tickets</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Tickets</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Tabela Tickets</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <button id="abrir-ticket" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal-xl"><i class="fa fa-bell"></i>  Abrir Ticket</button>
+                                    </div>
+
+                                </div>
+                                <br>
+
+
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Cliente</th>
+                                        <th>Solicitante</th>
+                                        <th>Departamento</th>
+                                        <th>Status</th>
+                                        <th>Data Abertura</th>
+                                        <th>Data Inicio</th>
+                                        <th>Data Finalização</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for item in object_list %}
+                                        <tr>
+                                            <td>{{ item.cliente }}</td>
+                                            <td>{{ item.solicitante }}</td>
+                                            <td>{{ item.departamento }}</td>
+                                            <td>{{ item.status }}</td>
+                                            <td>{{ item.created }}</td>
+                                            <td>{{ item.iniciado_em }}</td>
+                                            <td>{{ item.finalizado_em }}</td>
+                                            <td class="project-actions text-right">
+                                                <button class="update-produto btn btn-info btn-sm" data-form-url="{% url 'produtos:update-produto' item.pk %}">
+                                                    <i class="fas fa-pencil-alt">
+                                                    </i>
+                                                    Edit
+                                                </button>
+                                                <button class="delete-produto btn btn-danger btn-sm" data-form-url="{% url 'produtos:delete-produto' item.pk %}">
+                                                    <i class="fas fa-trash">
+                                                    </i>
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}reate-produto-categoria
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Cliente</th>
+                                        <th>Solicitante</th>
+                                        <th>Departamento</th>
+                                        <th>Status</th>
+                                        <th>Data Abertura</th>
+                                        <th>Data Inicio</th>
+                                        <th>Data Finalização</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock content %}
+
+{% block extra_scripts %}
+    <script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'plugins/jszip/jszip.min.js' %}"></script>
+    <script src="{% static 'plugins/pdfmake/pdfmake.min.js' %}"></script>
+    <script src="{% static 'plugins/pdfmake/vfs_fonts.js' %}"></script>
+    <script src="{% static 'plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+
+
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+
+
+                "dom": 'Bfrtip',
+
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.2/i18n/pt-BR.json'
+                },
+                scrollY: '50vh',
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#abrir-ticket").modalForm({
+                formURL: "{% url 'tickets:abrir-ticket' %}",
+                modalID: "#modal-xl"
+            });
+            function updateProdutoModalForm() {
+                $(".update-produto").each(function () {
+                    $(this).modalForm({
+                        formURL: $(this).data("form-url"),
+                        asyncUpdate: false,
+                        modalID: "#modal-xl",
+                    });
+                });
+            }
+
+            updateProdutoModalForm();
+
+            function deleteProdutoForm() {
+                $(".delete-produto").each(function () {
+                    $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
+
+                });
+            }
+            deleteProdutoForm();
+        });
+    </script>
+{% endblock extra_scripts %}
